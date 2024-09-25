@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const userRouter = Router();
+const auth = require("../auth");
 
 userRouter.post("/signup", async () => {
   const email = req.body.email;
