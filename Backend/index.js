@@ -2,6 +2,7 @@ const express = require("express");
 const { UserModel, TodoModel } = require("./db");
 const jwt = require("jsonwebtoken");
 const app = express();
+const { userRouter } = require("./routes/user");
 require("dotenv").config();
 const { default: mongoose } = require("mongoose");
 //How to use await
@@ -83,5 +84,6 @@ function auth(res, req, next) {
   }
 }
 
-app.listen(3000,() => {
-console.log("Sever Running")});
+app.listen(3000, () => {
+  console.log("Sever Running");
+});
