@@ -5,12 +5,11 @@ const app = express();
 const { userRouter } = require("./routes/user");
 const { todoRouter } = require("./routes/todo");
 require("dotenv").config();
+app.use(express.json());
 const { default: mongoose } = require("mongoose");
-//How to use await
-mongoose.connect(process.env.db_todo);
+mongoose.connect(process.env.db_todo); //How to use await
 
 const JWT_SECRET = process.env.jwt_secret;
-app.use(express.json());
 
 //Routers
 app.use("/api/v1/user", userRouter);
