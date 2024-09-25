@@ -11,7 +11,7 @@ mongoose.connect(process.env.db_todo);
 const JWT_SECRET = process.env.jwt_secret;
 app.use(express.json());
 
-app.post("/signup", async function (req, res) {
+app.post("/user/signup", async function (req, res) {
   const email = req.body.email;
   const password = req.body.password;
   const name = req.body.name;
@@ -27,7 +27,7 @@ app.post("/signup", async function (req, res) {
   });
 });
 
-app.post("/signin", async function (req, res) {
+app.post("/user/signin", async function (req, res) {
   const email = req.body.email;
   const password = req.body.password;
 
