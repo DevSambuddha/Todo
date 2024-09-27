@@ -7,7 +7,17 @@ const { todoRouter } = require("./routes/todo");
 require("dotenv").config();
 app.use(express.json()); //HTTP Deep Dive
 const { default: mongoose } = require("mongoose");
-mongoose.connect(process.env.db_todo); //How to use await
+
+{
+  async () => {
+    try {
+      await mongoose.connect(process.env.db_todo);
+      console.log("Connected to mongoDB");
+    } catch (error) {
+      console.log("Error occured");
+    }
+  };
+}
 
 const JWT_SECRET = process.env.jwt_secret;
 
@@ -15,6 +25,8 @@ const JWT_SECRET = process.env.jwt_secret;
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/todo", todoRouter);
 
-app.listen(3000, () => {
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
   console.log("Sever Running");
 });
